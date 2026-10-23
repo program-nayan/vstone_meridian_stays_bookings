@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# Databricks & Spark
+.databricks/
+*.dbfs
+.spark-staging/
+checkpoint/
+metastore_db/
+derby.log
+
+# Jupyter Notebooks & Data Profiling
+.ipynb_checkpoints
+*-checkpoint.ipynb
+
+# Environment variables & secrets (prevent accidental credentials push)
+.env
+.env.local
+secrets.json
+*.pem
+*.key
+
+# Operating System & IDE files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# VS Code & PyCharm
+.vscode/
+.idea/
+
+# Evidence & Local Outputs (Optional: uncomment if you don't want screenshots in git)
+# *.png
+# *.jpg
+# *.jpeg
