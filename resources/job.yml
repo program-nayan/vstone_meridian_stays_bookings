@@ -23,8 +23,7 @@ resources:
         # 1. Governance Setup (from your existing src/ notebook)
         - task_key: governance_setup
           notebook_task:
-            notebook_path: ../src/04-create-governed-tags-policies-and-a...ipynb # Use your actual filename
-
+            notebook_path: ../src/04-create-governed-tags-policies-and-apply-tags.ipynb 
         # 2. File Landing Simulator (from your existing src/ notebook)
         - task_key: file_landing
           depends_on:

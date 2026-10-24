@@ -10,7 +10,7 @@ variables:
     default: "t12"
   warehouse_id:
     description: "SQL Warehouse ID for metric views"
-    default: "63a6b2c83ed6e9a2" # Paste your Serverless Warehouse ID
+    default: "your_sql_warehouse_id_here"
 
 targets:
   dev:
@@ -20,17 +20,23 @@ targets:
       catalog: "meridian_t12"
     workspace:
       host: https://dbc-8dadb92d-21bb.cloud.databricks.com/
-    presets:
-      schedules: "paused" # Schedule deploys in paused state for dev
+    resources:
+      jobs:
+        meridian_orchestration_job:
+          schedule:
+            pause_status: PAUSED
 
   prod:
     mode: production
     variables:
       catalog: "meridian_t12"
     workspace:
-      host: https://<your-workspace-url>.cloud.databricks.com
-    presets:
-      schedules: "unpaused"
+      host: https://dbc-8dadb92d-21bb.cloud.databricks.com/
+    resources:
+      jobs:
+        meridian_orchestration_job:
+          schedule:
+            pause_status: UNPAUSED
 
 include:
   - "resources/*.yml"
