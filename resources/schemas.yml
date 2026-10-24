@@ -1,0 +1,20 @@
+resources:
+  schemas:
+    landing_schema:
+      catalog_name: ${var.catalog}
+      name: landing
+    bronze_schema:
+      catalog_name: ${var.catalog}
+      name: bronze
+    silver_schema:
+      catalog_name: ${var.catalog}
+      name: silver
+    gold_schema:
+      catalog_name: ${var.catalog}
+      name: gold
+    gov_schema:
+      catalog_name: ${var.catalog}
+      name: gov
+    ops_schema:
+      catalog_name: ${var.catalog}
+      name: ops

@@ -1,0 +1,7 @@
+resources:
+  volumes:
+    landing_volume:
+      catalog_name: ${var.catalog}
+      schema_name: landing
+      name: raw_files
+      volume_type: MANAGED

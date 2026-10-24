@@ -1,0 +1,58 @@
+resources:
+  jobs:
+    meridian_orchestration_job:
+      name: "[${bundle.target}] meridian_${var.trainee}_orchestration_job"
+
+      parameters:
+        - name: batch_id
+          default: "auto"
+        - name: fail_test
+          default: "false"
+
+      schedule:
+        quartz_cron_expression: "0 0 6 * * ?"
+        timezone_id: "UTC"
+        pause_status: PAUSED
+
+      email_notifications:
+        on_failure:
+          - your_email@example.com
+        no_alert_for_skipped_runs: true
+
+      tasks:
+        # 1. Governance Setup (from your existing src/ notebook)
+        - task_key: governance_setup
+          notebook_task:
+            notebook_path: ../src/04-create-governed-tags-policies-and-a...ipynb # Use your actual filename
+
+        # 2. File Landing Simulator (from your existing src/ notebook)
+        - task_key: file_landing
+          depends_on:
+            - task_key: governance_setup
+          notebook_task:
+            notebook_path: ../src/03-landing-simulator.ipynb
+            base_parameters:
+              batch_id: "{{job.parameters.batch_id}}"
+
+        # 3. DLT Pipeline
+        - task_key: pipeline_run
+          depends_on:
+            - task_key: file_landing
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.meridian_dlt_pipeline.id}
+
+        # 4. Metric Views & Visual Data Prep
+        - task_key: metric_views_and_visual_prep
+          depends_on:
+            - task_key: pipeline_run
+          notebook_task:
+            notebook_path: ../sql_queries/KPIs metric view.dbquery.ipynb
+
+        # 5. Data Quality Gate
+        - task_key: quality_gate
+          depends_on:
+            - task_key: metric_views_and_visual_prep
+          notebook_task:
+            notebook_path: ../src/09-quality-gate.ipynb
+            base_parameters:
+              fail_test: "{{job.parameters.fail_test}}"

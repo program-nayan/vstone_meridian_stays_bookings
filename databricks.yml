@@ -1,0 +1,36 @@
+bundle:
+  name: meridian_t12
+
+variables:
+  catalog:
+    description: "Target Unity Catalog"
+    default: "meridian_t12"
+  trainee:
+    description: "Trainee identifier"
+    default: "t12"
+  warehouse_id:
+    description: "SQL Warehouse ID for metric views"
+    default: "your_sql_warehouse_id_here" # Paste your Serverless Warehouse ID
+
+targets:
+  dev:
+    default: true
+    mode: development
+    variables:
+      catalog: "meridian_t12"
+    workspace:
+      host: https://<your-workspace-url>.cloud.databricks.com
+    presets:
+      schedules: "paused" # Schedule deploys in paused state for dev
+
+  prod:
+    mode: production
+    variables:
+      catalog: "meridian_t12"
+    workspace:
+      host: https://<your-workspace-url>.cloud.databricks.com
+    presets:
+      schedules: "unpaused"
+
+include:
+  - "resources/*.yml"
