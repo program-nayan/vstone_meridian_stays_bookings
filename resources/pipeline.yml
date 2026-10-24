@@ -2,14 +2,20 @@ resources:
   pipelines:
     meridian_dlt_pipeline:
       name: "[${bundle.target}] meridian_${var.trainee}_pipeline"
-      target: silver
       catalog: ${var.catalog}
+      target: silver
       channel: "preview"
       serverless: true
+      configuration:
+        catalog: ${var.catalog}
+        pipeline.catalog: ${var.catalog}
+        trainee: ${var.trainee}
       libraries:
         - notebook:
-            path: ../src/pipeline/00_bronze.ipynb # Adjust to exact file name in your pipeline folder
+            path: ../src/pipeline/00_bronze.ipynb # Make sure 00_bronze is included if it defines bronze_bookings
         - notebook:
-            path: ../src/pipeline/02_gold.ipynb   # Adjust to exact file name in your pipeline folder
+            path: ../src/pipeline/01_silver.ipynb
+        - notebook:
+            path: ../src/pipeline/02_gold.ipynb
       continuous: false
       development: false
