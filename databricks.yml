@@ -10,7 +10,7 @@ variables:
     default: "t12"
   warehouse_id:
     description: "SQL Warehouse ID for metric views"
-    default: "your_sql_warehouse_id_here"
+    default: "63a6b2c83ed6e9a2"
 
 targets:
   dev:
