@@ -8,8 +8,8 @@ resources:
       serverless: true
       libraries:
         - notebook:
-            path: ../src/pipeline/01_silver.py # Adjust to exact file name in your pipeline folder
+            path: ../src/pipeline/00_bronze.ipynb # Adjust to exact file name in your pipeline folder
         - notebook:
-            path: ../src/pipeline/02_gold.py   # Adjust to exact file name in your pipeline folder
+            path: ../src/pipeline/02_gold.ipynb   # Adjust to exact file name in your pipeline folder
       continuous: false
       development: false
