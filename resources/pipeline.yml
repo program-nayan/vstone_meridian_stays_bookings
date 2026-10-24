@@ -3,7 +3,7 @@ resources:
     meridian_dlt_pipeline:
       name: "[${bundle.target}] meridian_${var.trainee}_pipeline"
       catalog: ${var.catalog}
-      target: bronze
+      target: silver
       channel: "preview"
       serverless: true
       configuration:
