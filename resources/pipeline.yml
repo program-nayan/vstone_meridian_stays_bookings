@@ -12,7 +12,7 @@ resources:
         trainee: ${var.trainee}
       libraries:
         - notebook:
-            path: ../src/pipeline/00_bronze.ipynb # Make sure 00_bronze is included if it defines bronze_bookings
+            path: ../src/pipeline/00_bronze.ipynb 
         - notebook:
             path: ../src/pipeline/01_silver.ipynb
         - notebook:
